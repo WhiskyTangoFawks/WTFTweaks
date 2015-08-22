@@ -1,0 +1,9 @@
+
+tile.sulfur_ore.name=Sulfur Ore
+tile.nitre_ore.name=Nitre Ore
+item.UnrefinedNitre.name=Unrefined Nitre
+item.UnrefinedSulfur.name=Unrefined Sulphur
+tile.WTFtnt.namet=Mining TNT
+entity.WTFcreeper.name=Creeper
+tile.finite_torch_lit.name=Lit Torch
+finite_torch_unit.name=Unlit Torch

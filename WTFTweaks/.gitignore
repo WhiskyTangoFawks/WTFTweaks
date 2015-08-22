@@ -1,0 +1,9 @@
+/bin/
+/build/
+/config/
+/gradle/
+/libs/
+/logs/
+/mods/
+/resourcepacks/
+/saves/
