@@ -59,11 +59,6 @@ public class WTFtweaks {
 	public void PreInit(FMLPreInitializationEvent preEvent)
 	{
 
-		WTFTweaksConfig.customConfig();
-
-
-
-
 		//items
 		itemUnrefinedSulfur = new WTFItems().setUnlocalizedName("UnrefinedSulfur");
 		GameRegistry.registerItem(itemUnrefinedSulfur, "UnrefinedSulfur");
@@ -97,55 +92,6 @@ public class WTFtweaks {
 		proxy.registerRenderers();
 
 
-		//UBify Ores---------------------------
-/*
-		if(WTFTweaksConfig.defaultOreUbification && Loader.isModLoaded("UndergroundBiomes") == true && Loader.isModLoaded("TConstruct") == true){
-		try {
-			UBAPIHook.ubAPIHook.ubOreTexturizer.
-			setupUBOre(TinkerWorld.oreSlag,  3, "undergroundbiomes:copper_overlay", "Copper Ore", preEvent);
-			}
-		catch (Exception e)
-			{//do nothing; Underground Biomes not installed
-			}
-		try {
-			UBAPIHook.ubAPIHook.ubOreTexturizer.
-			setupUBOre(TinkerWorld.oreSlag, 4, "undergroundbiomes:tin_overlay", "Tin Ore", preEvent);
-			}
-		catch (Exception e)
-			{
-			//do nothing; Underground Biomes not installed
-			}
-		try {
-			UBAPIHook.ubAPIHook.ubOreTexturizer.
-			setupUBOre(TinkerWorld.oreSlag, 5, "wtftweaks:aluminum_overlay", "aluminum Ore", preEvent);
-			}
-		catch (Exception e)
-			{
-			//do nothing; Underground Biomes not installed
-			}
-
-
-		try {
-			UBAPIHook.ubAPIHook.ubOreTexturizer.
-			setupUBOre(WTFtweaks.oreSulfurOre, 0, "wtftweaks:sulfuroverlay", " Sulfur Ore", preEvent);
-			}
-		catch (Exception e)
-			{
-			//do nothing; Underground Biomes not installed
-			}
-
-		try {
-			UBAPIHook.ubAPIHook.ubOreTexturizer.
-			setupUBOre(WTFtweaks.oreNitreOre, 0, "wtftweaks:niteroverlay", "Nitre Ore", preEvent);
-			}
-		catch (Exception e)
-			{
-			//do nothing; Underground Biomes not installed
-			}
-		}
-*/
-		//------------------------------END UBIFY ORES
-
 	}
 	@EventHandler public void load(FMLInitializationEvent event)
 	{
@@ -156,6 +102,7 @@ public class WTFtweaks {
 	}
 	@EventHandler
 	public void PostInit(FMLPostInitializationEvent postEvent){
+		WTFTweaksConfig.customConfig();
 
 	}
 }

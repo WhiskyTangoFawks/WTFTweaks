@@ -6,7 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import wtfcore.tweaksmethods.WTFmethods;
+
+import wtfcore.tweaksmethods.FracMethods;
 import wtfcore.utilities.BlockSets;
 import wtftweaks.WTFTweaksConfig;
 import wtftweaks.entities.WTFcreeper;
@@ -330,7 +331,7 @@ public class CustomExplosion extends Explosion{
 				j = chunkposition.chunkPosY;
 				k = chunkposition.chunkPosZ;
 				block = world.getBlock(i, j, k);
-				WTFmethods.Fracture(i, j, k, world);
+				FracMethods.fracStone(i, j, k, world);
 			}
 
 

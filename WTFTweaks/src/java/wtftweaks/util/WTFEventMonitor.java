@@ -5,7 +5,7 @@ import java.util.Random;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameData;
-import wtfcore.tweaksmethods.WTFmethods;
+import wtfcore.tweaksmethods.FracMethods;
 import wtfcore.utilities.BlockSets;
 import wtftweaks.WTFTweaksConfig;
 import wtftweaks.WTFtweaks;
@@ -96,7 +96,7 @@ public class WTFEventMonitor {
 		if (!event.getPlayer().capabilities.isCreativeMode && BlockSets.isStone(block) && WTFTweaksConfig.stoneFracturesBeforeBreaking)
 		{
 
-			if (WTFmethods.Fracture(x, y, z, world)){
+			if (FracMethods.fracStone(x, y, z, world)){
 				event.setResult(Event.Result.DENY);
 			}
 		}
