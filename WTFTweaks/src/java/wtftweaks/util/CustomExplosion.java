@@ -9,7 +9,7 @@ import java.util.Random;
 
 import wtfcore.tweaksmethods.FracMethods;
 import wtfcore.utilities.BlockSets;
-import wtftweaks.WTFTweaksConfig;
+import wtftweaks.configs.WTFTweaksConfig;
 import wtftweaks.entities.WTFcreeper;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentProtection;

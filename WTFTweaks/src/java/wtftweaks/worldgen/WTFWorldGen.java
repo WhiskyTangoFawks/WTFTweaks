@@ -3,8 +3,8 @@ package wtftweaks.worldgen;
 import java.util.Random;
 
 import wtfcore.WTFCore;
-import wtftweaks.WTFTweaksConfig;
 import wtftweaks.WTFtweaks;
+import wtftweaks.configs.WTFTweaksConfig;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;

@@ -2,8 +2,8 @@ package wtftweaks.blocks;
 
 import java.util.Random;
 
-import wtftweaks.WTFTweaksConfig;
 import wtftweaks.WTFtweaks;
+import wtftweaks.configs.WTFTweaksConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockTorch;

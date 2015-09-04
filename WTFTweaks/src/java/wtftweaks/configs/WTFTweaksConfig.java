@@ -1,9 +1,8 @@
-package wtftweaks;
+package wtftweaks.configs;
 
 import java.io.File;
 import java.util.HashSet;
 import wtfcore.utilities.BlockSets;
-import wtftweaks.configs.ConfigUtils;
 import net.minecraftforge.common.config.Configuration;
 
 public class WTFTweaksConfig {
@@ -60,7 +59,7 @@ public class WTFTweaksConfig {
 		stoneFracturesBeforeBreaking = config.get("Mining", "Stone fractures before breaking", true).getBoolean();
 		
 
-		String oreString = config.get("Mining", "Unlocalised block name list", "modname:unlocalisedblockname,modname:unlocalisedblockname").getString();
+		String oreString = config.get("Mining", "Ores to add for fracturing- modname:blockname", "minecraft:emerald_ore").getString();
 		ConfigUtils.parseOreFrac(oreString);
 
 		/**
@@ -77,7 +76,7 @@ public class WTFTweaksConfig {
 		 * Gravity Options
 		 */
 		
-		String fallingBlockString = config.get("FallingBlock", "Unlocalised block name list and stability", ConfigUtils.getStringFromHashSet(setDefaultFallingBlock)).getString();
+		String fallingBlockString = config.get("Gravity", "Block name and number of identical blocks above requried to prevent falling if disturbed by player", ConfigUtils.getStringFromHashSet(setDefaultFallingBlock)).getString();
 		ConfigUtils.parseFallingBlocks(fallingBlockString);
 			
 		fallingBlocksDamage = config.get("Gravity", "Enable damage from falling cobblestone and dirt", true).getBoolean();

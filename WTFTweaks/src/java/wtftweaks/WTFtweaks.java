@@ -6,6 +6,7 @@ import wtftweaks.blocks.BlockUnlitTorch;
 import wtftweaks.blocks.WTFNitreOre;
 import wtftweaks.blocks.WTFSulfurOre;
 import wtftweaks.blocks.WTFtnt;
+import wtftweaks.configs.WTFTweaksConfig;
 import wtftweaks.entities.EntityHandler;
 import wtftweaks.items.WTFItems;
 import wtftweaks.proxy.CommonProxy;
@@ -28,7 +29,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 
 
-@Mod(modid = WTFtweaks.modid, name = "WhiskyTangoFox's Tweaks", version = "1.22",  dependencies = "after:UndergroundBiomes;required-after:WTFCore@[1.51,);after:CaveBiomes")
+@Mod(modid = WTFtweaks.modid, name = "WhiskyTangoFox's Tweaks", version = "1.23",  dependencies = "after:UndergroundBiomes;required-after:WTFCore@[1.52,);after:CaveBiomes")
 public class WTFtweaks {
 	public static final String modid = WTFCore.WTFTweaks;
 

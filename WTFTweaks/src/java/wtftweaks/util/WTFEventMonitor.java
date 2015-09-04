@@ -7,8 +7,8 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameData;
 import wtfcore.tweaksmethods.FracMethods;
 import wtfcore.utilities.BlockSets;
-import wtftweaks.WTFTweaksConfig;
 import wtftweaks.WTFtweaks;
+import wtftweaks.configs.WTFTweaksConfig;
 import wtftweaks.entities.WTFcreeper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.monster.EntityCreeper;
@@ -46,7 +46,7 @@ public class WTFEventMonitor {
 	public void StoneBreakSpeed (BreakSpeed event)
 	{
 		if (!event.entityPlayer.capabilities.isCreativeMode){
-			if (BlockSets.isStone(event.block))
+			if (BlockSets.hasCobblestone(event.block))
 			{
 				event.newSpeed = WTFTweaksConfig.stoneBreakSpeed * event.originalSpeed;
 			}
@@ -93,14 +93,14 @@ public class WTFEventMonitor {
 		World world = event.world;
 		Block block = event.block;
 
-		if (!event.getPlayer().capabilities.isCreativeMode && BlockSets.isStone(block) && WTFTweaksConfig.stoneFracturesBeforeBreaking)
+		if (!event.getPlayer().capabilities.isCreativeMode && BlockSets.hasCobblestone(block) && WTFTweaksConfig.stoneFracturesBeforeBreaking)
 		{
-
 			if (FracMethods.fracStone(x, y, z, world)){
 				event.setResult(Event.Result.DENY);
 			}
 		}
 		//This checks if the block is an ore block, then calls the fracture method associated with it in the ore blocks hashmap if it is
+
 		if (BlockSets.isOre(block) && WTFTweaksConfig.oreFractures)
 		{
 			BlockSets.getFrac(block).fracture(world, x, y, z);

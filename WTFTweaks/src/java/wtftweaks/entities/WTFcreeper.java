@@ -1,6 +1,6 @@
 package wtftweaks.entities;
 
-import wtftweaks.WTFTweaksConfig;
+import wtftweaks.configs.WTFTweaksConfig;
 import wtftweaks.util.CustomExplosion;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.util.MathHelper;
