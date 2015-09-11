@@ -29,7 +29,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 
 
-@Mod(modid = WTFtweaks.modid, name = "WhiskyTangoFox's Tweaks", version = "1.23",  dependencies = "after:UndergroundBiomes;required-after:WTFCore@[1.52,);after:CaveBiomes")
+@Mod(modid = WTFtweaks.modid, name = "WhiskyTangoFox's Tweaks", version = "1.25",  dependencies = "after:UndergroundBiomes;required-after:WTFCore@[1.6,);after:CaveBiomes")
 public class WTFtweaks {
 	public static final String modid = WTFCore.WTFTweaks;
 

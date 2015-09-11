@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import wtfcore.tweaksmethods.FracMethods;
-import wtfcore.utilities.BlockSets;
+import wtfcore.api.BlockSets;
+import wtfcore.api.FracMethods;
+import wtfcore.utilities.LoadBlockSets;
 import wtftweaks.configs.WTFTweaksConfig;
 import wtftweaks.entities.WTFcreeper;
 import net.minecraft.block.Block;
@@ -300,7 +301,7 @@ public class CustomExplosion extends Explosion{
 				world.setBlockToAir(i, j, k);
 				spawnExtraParticles(i, j, k);
 				block.onBlockExploded(world, i, j, k, this);
-				if (BlockSets.isExplosive(block))
+				if (LoadBlockSets.isExplosive(block))
 				{
 					//create new custom explosion here
 					//WTFexplosion.createExplosion(sourceEntity, this.world, i, j, k, (float)BlockData.getExplosionSize(block), (float)BlockData.getExplosionSize(block), true);
@@ -319,7 +320,7 @@ public class CustomExplosion extends Explosion{
 				}
 
 				block.onBlockExploded(world, i, j, k, this);
-				if (BlockSets.isExplosive(block))
+				if (LoadBlockSets.isExplosive(block))
 				{
 					//WTFexplosion.createExplosion(sourceEntity, this.world, i, j, k, (float)BlockData.getExplosionSize(block), (float)BlockData.getExplosionSize(block), true);
 				}

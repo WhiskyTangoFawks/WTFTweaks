@@ -1,11 +1,14 @@
 package wtftweaks.util;
 
 import java.util.HashSet;
-import wtfcore.utilities.BlockSets;
+
+import wtftweaks.configs.WTFTweaksConfig;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import wtfcore.api.BlockSets;
+import wtfcore.utilities.LoadBlockSets;
 
 public class WTFmethods {
 
@@ -24,12 +27,12 @@ public class WTFmethods {
 
 		if (!hashset.contains(Blocks.fence)){
 
-			if (BlockSets.shouldFall(world.getBlock(x, y, z))){
-				if (world.getBlock(x,  y,  z) == Blocks.grass){world.setBlock(x, y, z, Blocks.dirt);}
+			if (LoadBlockSets.shouldFall(world.getBlock(x, y, z))){
+			//	if (world.getBlock(x,  y,  z) == Blocks.grass){world.setBlock(x, y, z, Blocks.dirt);}
 				EntityFallingBlock entityfallingblock = new EntityFallingBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, world.getBlock(x,  y,  z), world.getBlockMetadata(x, y, z));
-				//if (WTFTweaksConfig.fallingBlocksDamage){
+				if (WTFTweaksConfig.fallingBlocksDamage){
 					entityfallingblock.func_145806_a(true);
-				//}
+				}
 				world.spawnEntityInWorld(entityfallingblock);
 				disturbBlock(world, x, y+1, z);
 			}
@@ -39,8 +42,8 @@ public class WTFmethods {
 	public static void disturbBlock(World world, int x, int y, int z){
 
 		Block block = world.getBlock(x, y, z);
-		if (BlockSets.shouldFall(block)){
-			int stability = BlockSets.getStabilty(block);
+		if (LoadBlockSets.shouldFall(block)){
+			int stability = LoadBlockSets.getStabilty(block);
 			boolean fall = false;
 			for (int loop = 1; loop < stability +1; loop++){
 				if (world.getBlock(x, y+loop, z) != block){fall = true;}

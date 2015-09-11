@@ -2,8 +2,9 @@ package wtftweaks.configs;
 
 import java.io.File;
 import java.util.HashSet;
-import wtfcore.utilities.BlockSets;
+
 import net.minecraftforge.common.config.Configuration;
+import wtfcore.api.BlockSets;
 
 public class WTFTweaksConfig {
 
