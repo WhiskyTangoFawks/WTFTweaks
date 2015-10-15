@@ -8,8 +8,9 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import wtfcore.WTFCore;
 import wtfcore.api.BlockSets;
-import wtfcore.api.FracMethods;
 import wtfcore.utilities.LoadBlockSets;
+import wtfcore.utilities.UBCblocks;
+import wtftweaks.util.FracMethods;
 
 public class ConfigUtils {
 
@@ -47,7 +48,7 @@ public class ConfigUtils {
 			WTFCore.log.info("WTFTweaksConfig.AddOre: block for : "+ oreStringArray[loop]);
 			Block oreBlock = GameData.getBlockRegistry().getObject(oreStringArray[loop]);
 			if (oreBlock != Blocks.air){
-				LoadBlockSets.addOreBlock(oreBlock, FracMethods.defaultfrac);
+				LoadBlockSets.addOreBlock(oreBlock);
 				WTFCore.log.info("WTFTweaksConfig.AddOre: Block added to ore list: "+oreBlock.getUnlocalizedName());
 			}
 			else {
@@ -55,6 +56,7 @@ public class ConfigUtils {
 			}
 		}
 	}
+	
 	
 	 
 	

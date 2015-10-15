@@ -8,15 +8,20 @@ import wtftweaks.blocks.WTFSulfurOre;
 import wtftweaks.blocks.WTFtnt;
 import wtftweaks.configs.WTFTweaksConfig;
 import wtftweaks.entities.EntityHandler;
+import wtftweaks.items.HomeScroll;
 import wtftweaks.items.WTFItems;
 import wtftweaks.proxy.CommonProxy;
 import wtftweaks.util.WTFEventMonitor;
 import wtftweaks.worldgen.WTFWorldGen;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -29,7 +34,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 
 
-@Mod(modid = WTFtweaks.modid, name = "WhiskyTangoFox's Tweaks", version = "1.25",  dependencies = "after:UndergroundBiomes;required-after:WTFCore@[1.6,);after:CaveBiomes")
+@Mod(modid = WTFtweaks.modid, name = "WhiskyTangoFox's Tweaks", version = "1.27",  dependencies = "after:UndergroundBiomes;required-after:WTFCore@[1.61,);after:CaveBiomes")
 public class WTFtweaks {
 	public static final String modid = WTFCore.WTFTweaks;
 
@@ -52,6 +57,7 @@ public class WTFtweaks {
 	public static Block finitetorch_lit;
 	public static Block finitetorch_unlit;
 
+	public static Item homeScroll;
 
 	@SidedProxy(clientSide="wtftweaks.proxy.ClientProxy", serverSide="wtftweaks.proxy.CommonProxy" )
 	public static CommonProxy proxy;
@@ -70,9 +76,12 @@ public class WTFtweaks {
 		//Blocks
 		oreNitreOre = new WTFNitreOre().setBlockName("nitre_ore");
 		GameRegistry.registerBlock(oreNitreOre, "nitre_ore");
+		OreDictionary.registerOre("oreNitre", oreNitreOre);
+		
 
 		oreSulfurOre = new WTFSulfurOre().setBlockName("sulfur_ore");
 		GameRegistry.registerBlock(oreSulfurOre, "sulfur_ore");
+		OreDictionary.registerOre("oreSulfur", oreSulfurOre);
 
 		blockWTFtnt = new WTFtnt().setBlockName("WTFtnt");
 		GameRegistry.registerBlock(blockWTFtnt, "WTFtnt");
@@ -83,6 +92,9 @@ public class WTFtweaks {
 		finitetorch_unlit = new BlockUnlitTorch().setBlockName("finite_torch_unlit");
 		GameRegistry.registerBlock(finitetorch_unlit, "finite_torch_unlit");
 
+		homeScroll = new HomeScroll().setUnlocalizedName("home_scroll");
+		GameRegistry.registerItem(homeScroll, "home_scroll");
+		
 		EntityHandler.RegisterEntityList();
 
 
@@ -100,6 +112,16 @@ public class WTFtweaks {
 
 	//recipes
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.gunpowder), new Object[] {WTFtweaks.itemUnrefinedSulfur, WTFtweaks.itemUnrefinedNitre, WTFtweaks.itemUnrefinedNitre, WTFtweaks.itemUnrefinedNitre, new ItemStack(Items.coal, 1, 1)});
+		GameRegistry.addRecipe(new ItemStack(homeScroll), "x","y","x",'x', new ItemStack(Items.paper), 'y', new ItemStack(Items.ender_pearl));
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 1, 15), new Object[]{itemUnrefinedSulfur, itemUnrefinedNitre});
+		
+		ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_LIBRARY).addItem(new WeightedRandomChestContent(new ItemStack(homeScroll),1,2,100));
+		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(homeScroll),1,2,100));
+		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(homeScroll),1,2,100));
+		
+		ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(Item.getItemFromBlock(Blocks.tnt)),1,2,100));
+
+		
 	}
 	@EventHandler
 	public void PostInit(FMLPostInitializationEvent postEvent){

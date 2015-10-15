@@ -14,6 +14,10 @@ public class WTFTweaksConfig {
 	public static int sulfurSpawnRate;
 
 	public static float stoneBreakSpeed;
+	public static float sedimentaryBreakSpeed;
+	public static float metamorphicBreakSpeed;
+	public static float igneousBreakSpeed;
+	public static float sandstoneBreakSpeed;
 
 	public static boolean replaceExplosives;
 	public static boolean replaceCreepers;
@@ -56,6 +60,10 @@ public class WTFTweaksConfig {
 		 */
 		
 		stoneBreakSpeed = 0.01F * config.get("Mining", "Stone break speed % modifier", 20).getInt();
+		sedimentaryBreakSpeed = 0.01F * config.get("Mining", "Stone break speed % modifier", 50).getInt();
+		metamorphicBreakSpeed = 0.01F * config.get("Mining", "Stone break speed % modifier", 30).getInt();
+		igneousBreakSpeed = 0.01F * config.get("Mining", "Stone break speed % modifier", 10).getInt();
+		sandstoneBreakSpeed = 0.01F * config.get("Mining", "Stone break speed % modifier", 50).getInt();
 		oreFractures = config.get("Mining", "Ores fracture adjacent blocks when mined", true).getBoolean();
 		stoneFracturesBeforeBreaking = config.get("Mining", "Stone fractures before breaking", true).getBoolean();
 		

@@ -7,3 +7,4 @@ tile.WTFtnt.namet=Mining TNT
 entity.WTFcreeper.name=Creeper
 tile.finite_torch_lit.name=Lit Torch
 finite_torch_unit.name=Unlit Torch
+item.home_scroll.name=Home Scroll

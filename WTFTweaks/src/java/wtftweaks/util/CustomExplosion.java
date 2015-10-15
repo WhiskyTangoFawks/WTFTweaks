@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Random;
 
 import wtfcore.api.BlockSets;
-import wtfcore.api.FracMethods;
 import wtfcore.utilities.LoadBlockSets;
 import wtftweaks.configs.WTFTweaksConfig;
 import wtftweaks.entities.WTFcreeper;

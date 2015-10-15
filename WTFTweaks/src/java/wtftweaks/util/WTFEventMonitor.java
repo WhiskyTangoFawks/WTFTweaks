@@ -5,10 +5,10 @@ import java.util.Random;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameData;
-import wtfcore.api.BlockSets;
-import wtfcore.api.FracMethods;
-import wtfcore.api.FracMethods.IFracture;
+import wtfcore.WTFCore;
+import wtfcore.blocks.OreChildBlock;
 import wtfcore.utilities.LoadBlockSets;
+import wtfcore.utilities.UBCblocks;
 import wtftweaks.WTFtweaks;
 import wtftweaks.configs.WTFTweaksConfig;
 import wtftweaks.entities.WTFcreeper;
@@ -50,10 +50,26 @@ public class WTFEventMonitor {
 		if (!event.entityPlayer.capabilities.isCreativeMode){
 			if (LoadBlockSets.hasCobblestone(event.block))
 			{
-				event.newSpeed = WTFTweaksConfig.stoneBreakSpeed * event.originalSpeed;
+				if (event.block == UBCblocks.SedimentaryStone){
+					event.newSpeed = WTFTweaksConfig.sedimentaryBreakSpeed * event.originalSpeed;
+				}
+				if (event.block == UBCblocks.IgneousStone){
+					event.newSpeed = WTFTweaksConfig.igneousBreakSpeed * event.originalSpeed;
+				}
+				else if (event.block==UBCblocks.MetamorphicStone){
+					event.newSpeed = WTFTweaksConfig.metamorphicBreakSpeed * event.originalSpeed;
+				}
+				else if (event.block==Blocks.sandstone){
+					event.newSpeed = WTFTweaksConfig.sandstoneBreakSpeed * event.originalSpeed;
+				}
+				else {
+					event.newSpeed = WTFTweaksConfig.stoneBreakSpeed * event.originalSpeed;
+				}
 			}
 		}
 	}
+		
+	
 
 	//Deals with whenever a player places a block
 	@SubscribeEvent
@@ -88,7 +104,6 @@ public class WTFEventMonitor {
 	@SubscribeEvent
 	public void BlockBreakEvent(BreakEvent event)
 	{
-
 		int x = event.x;
 		int y = event.y;
 		int z = event.z;
@@ -99,16 +114,20 @@ public class WTFEventMonitor {
 		{
 			if (FracMethods.fracStone(x, y, z, world)){
 				event.setResult(Event.Result.DENY);
+				event.getPlayer().getHeldItem().attemptDamageItem(1, random);
 			}
 		}
 		//This checks if the block is an ore block, then calls the fracture method associated with it in the ore blocks hashmap if it is
 
 		if (LoadBlockSets.isOre(block) && WTFTweaksConfig.oreFractures)
 		{
-			IFracture frac =LoadBlockSets.getFrac(block); 
-			if (frac != null){
-				frac.fracture(world, x, y, z);
+			if (event.block instanceof OreChildBlock){ 
+				FracMethods.WTFOresFracture(world, x, y, z, event.block, event.blockMetadata);
 			}
+			else {
+				FracMethods.fracture(world, x, y, z);
+			}
+			
 		}
 		//checks for fall of the block above the block thats been broken
 		WTFmethods.disturbBlock(event.world, x, y+1, z);

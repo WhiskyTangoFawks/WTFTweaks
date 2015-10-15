@@ -21,7 +21,7 @@ public class WTFNitreOre extends BlockOre {
 		@SideOnly(Side.CLIENT)
 		public void registerBlockIcons(IIconRegister iconRegister)
 		{
-			this.blockIcon = iconRegister.registerIcon(WTFtweaks.modid + ":" + this.getUnlocalizedName().substring(5));
+			this.blockIcon = iconRegister.registerIcon(WTFtweaks.modid + ":Nitre");
 		}
 	    @Override
 	    public Item getItemDropped(int metadata, Random random, int fortune) {

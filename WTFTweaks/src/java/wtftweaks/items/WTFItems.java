@@ -11,7 +11,7 @@ public class WTFItems extends Item {
 
 	public WTFItems()
 	{
-		//this.setCreativeTab(getCreativeTab().tabMaterials);
+		this.setCreativeTab(getCreativeTab().tabMaterials);
 	}
 
 	@Override
