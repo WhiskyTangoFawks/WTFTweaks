@@ -3,6 +3,7 @@ package wtftweaks.worldgen;
 import java.util.Random;
 
 import wtfcore.WTFCore;
+import wtftweaks.WTFBlocks;
 import wtftweaks.WTFtweaks;
 import wtftweaks.configs.WTFTweaksConfig;
 import net.minecraft.block.Block;
@@ -29,8 +30,8 @@ public class WTFWorldGen implements IWorldGenerator {
 
 	private void generateSurface(World world, Random random, int x, int z) {
 		if (!Loader.isModLoaded(WTFCore.WTFOres)){
-			this.addOreSpawn(WTFtweaks.oreNitreOre, world, random, x, z, 16, 16, 4+random.nextInt(6), WTFTweaksConfig.nitreSpawnRate, 38, 100);
-			this.addOreSpawn(WTFtweaks.oreSulfurOre, world, random, x, z, 16, 16, 1+random.nextInt(6), WTFTweaksConfig.sulfurSpawnRate, 38, 100);
+			this.addOreSpawn(WTFBlocks.oreNitre, world, random, x, z, 16, 16, 4+random.nextInt(6), WTFTweaksConfig.nitreSpawnRate, 38, 100);
+			this.addOreSpawn(WTFBlocks.oreSulfur, world, random, x, z, 16, 16, 1+random.nextInt(6), WTFTweaksConfig.sulfurSpawnRate, 38, 100);
 		}
 	}
 

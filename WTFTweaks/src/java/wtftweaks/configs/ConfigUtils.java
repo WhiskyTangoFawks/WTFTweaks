@@ -1,5 +1,6 @@
 package wtftweaks.configs;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -11,6 +12,7 @@ import wtfcore.api.BlockSets;
 import wtfcore.utilities.LoadBlockSets;
 import wtfcore.utilities.UBCblocks;
 import wtftweaks.util.FracMethods;
+import wtftweaks.util.WTFEventMonitor;
 
 public class ConfigUtils {
 
@@ -56,6 +58,26 @@ public class ConfigUtils {
 			}
 		}
 	}
+
+	public static void parseMiningSpeeds(String readMiningSpeed) {
+		String[] blockStringArray = readMiningSpeed.split(",");
+		for(int loop = 0; loop < blockStringArray.length; loop++)
+		{
+			String[] blockAndSpeed = blockStringArray[loop].split("@");
+			Block block = GameData.getBlockRegistry().getObject(blockAndSpeed[0]);
+			float speed = Float.parseFloat(blockAndSpeed[1]);
+			
+			if (block != Blocks.air){
+				WTFEventMonitor.speedMod.put(block, speed);
+				WTFCore.log.info("WTFTweaksConfig.AddOre: Block added to mining speed list: " + block.getUnlocalizedName() + "@"+speed);
+			}
+			else {
+				WTFCore.log.info("WTFTweaksConfig.AddOre: Unable to find block for : "+"blockStringArray[loop]");
+			}
+			if (speed == 0){
+				WTFCore.log.info("Speed float not parsed correctly for " + blockStringArray[loop]);
+			}
+		}	}
 	
 	
 	 

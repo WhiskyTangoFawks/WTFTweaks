@@ -1,6 +1,10 @@
 package wtftweaks.util;
 
+import java.util.HashMap;
 import java.util.Random;
+
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -9,22 +13,28 @@ import wtfcore.WTFCore;
 import wtfcore.blocks.OreChildBlock;
 import wtfcore.utilities.LoadBlockSets;
 import wtfcore.utilities.UBCblocks;
+import wtftweaks.WTFBlocks;
 import wtftweaks.WTFtweaks;
 import wtftweaks.configs.WTFTweaksConfig;
 import wtftweaks.entities.WTFcreeper;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
 
 public class WTFEventMonitor {
 
 	Random random = new Random();
+	public static HashMap<Block, Float> speedMod = Maps.newHashMap();
 
 	@SubscribeEvent
 	public void SpawnReplacer (LivingSpawnEvent event)
@@ -48,24 +58,9 @@ public class WTFEventMonitor {
 	public void StoneBreakSpeed (BreakSpeed event)
 	{
 		if (!event.entityPlayer.capabilities.isCreativeMode){
-			if (LoadBlockSets.hasCobblestone(event.block))
-			{
-				if (event.block == UBCblocks.SedimentaryStone){
-					event.newSpeed = WTFTweaksConfig.sedimentaryBreakSpeed * event.originalSpeed;
-				}
-				if (event.block == UBCblocks.IgneousStone){
-					event.newSpeed = WTFTweaksConfig.igneousBreakSpeed * event.originalSpeed;
-				}
-				else if (event.block==UBCblocks.MetamorphicStone){
-					event.newSpeed = WTFTweaksConfig.metamorphicBreakSpeed * event.originalSpeed;
-				}
-				else if (event.block==Blocks.sandstone){
-					event.newSpeed = WTFTweaksConfig.sandstoneBreakSpeed * event.originalSpeed;
-				}
-				else {
-					event.newSpeed = WTFTweaksConfig.stoneBreakSpeed * event.originalSpeed;
-				}
-			}
+			if (speedMod.containsKey(event.block)){
+				event.newSpeed = speedMod.get(event.block) * event.originalSpeed;
+			}	
 		}
 	}
 		
@@ -90,13 +85,13 @@ public class WTFEventMonitor {
 		if (!event.player.capabilities.isCreativeMode){
 			if (WTFTweaksConfig.replaceExplosives && event.block == Blocks.tnt)
 			{
-				event.world.setBlock(event.x, event.y, event.z, WTFtweaks.blockWTFtnt);
+				event.world.setBlock(event.x, event.y, event.z, WTFBlocks.blockWTFtnt);
 			}
 			if (WTFTweaksConfig.oreFractures && LoadBlockSets.isOre(block)){
 				event.setCanceled (true);
 			}
 			if (WTFTweaksConfig.enableFiniteTorch > 0 && event.block == Blocks.torch){
-				event.world.setBlock(event.x, event.y, event.z, WTFtweaks.finitetorch_unlit, event.world.getBlockMetadata(event.x, event.y, event.z), 3);;
+				event.world.setBlock(event.x, event.y, event.z, WTFBlocks.finitetorch_unlit, event.world.getBlockMetadata(event.x, event.y, event.z), 3);;
 			}
 		}
 	}
@@ -114,11 +109,14 @@ public class WTFEventMonitor {
 		{
 			if (FracMethods.fracStone(x, y, z, world)){
 				event.setResult(Event.Result.DENY);
-				event.getPlayer().getHeldItem().attemptDamageItem(1, random);
+				if (event.getPlayer().getHeldItem() != null){
+					event.getPlayer().getHeldItem().attemptDamageItem(1, random);
+				}
 			}
 		}
 		//This checks if the block is an ore block, then calls the fracture method associated with it in the ore blocks hashmap if it is
 
+	
 		if (LoadBlockSets.isOre(block) && WTFTweaksConfig.oreFractures)
 		{
 			if (event.block instanceof OreChildBlock){ 
@@ -134,6 +132,15 @@ public class WTFEventMonitor {
 
 	}
 
+	@SubscribeEvent
+	public void BlockHarvestEvent(HarvestDropsEvent event){
+		if (event.block instanceof BlockLeavesBase){
+			if (random.nextBoolean()){
+				event.drops.add(new ItemStack(Items.stick, random.nextInt(1)+random.nextInt(2)));
+			}
+		}
+		
+	}
 
 
 

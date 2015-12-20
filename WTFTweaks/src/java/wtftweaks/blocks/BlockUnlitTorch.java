@@ -2,6 +2,7 @@ package wtftweaks.blocks;
 
 import java.util.Random;
 
+import wtftweaks.WTFBlocks;
 import wtftweaks.WTFtweaks;
 import wtftweaks.configs.WTFTweaksConfig;
 import cpw.mods.fml.relauncher.Side;
@@ -30,11 +31,11 @@ public class BlockUnlitTorch extends BlockTorch{
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
 	{
 		if(WTFTweaksConfig.enableFiniteTorch ==1) {
-			world.setBlock(x,y,z, WTFtweaks.finitetorch_lit, world.getBlockMetadata(x, y, z), 3);
+			world.setBlock(x,y,z, WTFBlocks.finitetorch_lit, world.getBlockMetadata(x, y, z), 3);
 			return true;
 		}
 		else if (WTFTweaksConfig.enableFiniteTorch ==2 && player.getCurrentEquippedItem().getItem() == Items.flint_and_steel){
-			world.setBlock(x,y,z, WTFtweaks.finitetorch_lit, world.getBlockMetadata(x, y, z), 3);
+			world.setBlock(x,y,z, WTFBlocks.finitetorch_lit, world.getBlockMetadata(x, y, z), 3);
 			return true;
 		}
 		return false;

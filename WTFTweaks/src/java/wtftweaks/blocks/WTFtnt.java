@@ -65,7 +65,7 @@ public class WTFtnt extends BlockTNT{
 		}
 		else if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Items.redstone){
 			int metadata = world.getBlockMetadata(x,y,z);
-			if (metadata < 15){
+			if (metadata < 16){
 				world.setBlockMetadataWithNotify(x, y, z, metadata+1, 3);
 				if (!player.capabilities.isCreativeMode){
 					player.inventory.consumeInventoryItem(Items.redstone);

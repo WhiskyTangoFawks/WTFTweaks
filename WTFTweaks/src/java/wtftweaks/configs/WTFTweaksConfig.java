@@ -5,6 +5,7 @@ import java.util.HashSet;
 
 import net.minecraftforge.common.config.Configuration;
 import wtfcore.api.BlockSets;
+import wtftweaks.util.WTFEventMonitor;
 
 public class WTFTweaksConfig {
 
@@ -35,6 +36,8 @@ public class WTFTweaksConfig {
 	public static String[] oreList;
 	public static boolean fallingBlocksDamage;
 	public static boolean explosionFractures;
+	
+	public static boolean homescroll;
 
 	public static boolean enableNameGetter;
 
@@ -60,10 +63,15 @@ public class WTFTweaksConfig {
 		 */
 		
 		stoneBreakSpeed = 0.01F * config.get("Mining", "Stone break speed % modifier", 20).getInt();
-		sedimentaryBreakSpeed = 0.01F * config.get("Mining", "Stone break speed % modifier", 50).getInt();
-		metamorphicBreakSpeed = 0.01F * config.get("Mining", "Stone break speed % modifier", 30).getInt();
-		igneousBreakSpeed = 0.01F * config.get("Mining", "Stone break speed % modifier", 10).getInt();
-		sandstoneBreakSpeed = 0.01F * config.get("Mining", "Stone break speed % modifier", 50).getInt();
+		sedimentaryBreakSpeed = 0.01F * config.get("Mining", "UBCS Sedimentary Stone break speed % modifier", 50).getInt();
+		metamorphicBreakSpeed = 0.01F * config.get("Mining", "UBC Metamorphic break speed % modifier", 30).getInt();
+		igneousBreakSpeed = 0.01F * config.get("Mining", "UBC Igneous break speed % modifier", 10).getInt();
+		sandstoneBreakSpeed = 0.01F * config.get("Mining", "UBC Sandstone break speed % modifier", 50).getInt();
+		
+		String defaultMiningSpeed = "minecraft:stone@0.15,minecraft:sandstone@0.3,UndergroundBiomes:igneousStone@0.05,UndergroundBiomes:metamorphicStone@0.2,UndergroundBiomes:sedimentaryStone@0.3";
+		String readMiningSpeed = config.get("Mining", "Mining speed modifiers", defaultMiningSpeed).getString();
+		ConfigUtils.parseMiningSpeeds(readMiningSpeed);
+		
 		oreFractures = config.get("Mining", "Ores fracture adjacent blocks when mined", true).getBoolean();
 		stoneFracturesBeforeBreaking = config.get("Mining", "Stone fractures before breaking", true).getBoolean();
 		
@@ -96,7 +104,13 @@ public class WTFTweaksConfig {
 		 */
 		enableFiniteTorch = config.get("Finite Torches", "0 = disable finite torches, 1 = Relight torches with a right click, 2= relight torches with a flint and steel only", 1).getInt();
 		torchLifespan = config.get("Finite Torches", "Average Torch lifespan", 5).getInt();
+		
 
+		/**
+		 * Item Options
+		 */
+		homescroll = config.get("Items", "Enable home scrolls", true).getBoolean();
+		
 		config.save();
 
 	}

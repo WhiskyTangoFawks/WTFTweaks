@@ -22,7 +22,7 @@ import wtfcore.WTFCore;
 public class HomeScroll extends Item{
 	
 	public HomeScroll(){
-		this.setCreativeTab(getCreativeTab().tabTransport);
+		//this.setCreativeTab(getCreativeTab().tabTransport);
 	}
 	Random random = new Random();
 	

@@ -2,6 +2,7 @@ package wtftweaks.blocks;
 
 import java.util.Random;
 
+import wtftweaks.WTFItems;
 import wtftweaks.WTFtweaks;
 import net.minecraft.block.BlockOre;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -25,7 +26,7 @@ public class WTFSulfurOre extends BlockOre {
 		}
 	    @Override
 	    public Item getItemDropped(int metadata, Random random, int fortune) {
-	        return WTFtweaks.itemUnrefinedSulfur;
+	        return WTFItems.sulfur;
 	    }
 		@Override
 		public int quantityDropped(Random par1Random)

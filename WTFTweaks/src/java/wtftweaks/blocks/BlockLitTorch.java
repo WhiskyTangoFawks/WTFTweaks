@@ -3,6 +3,7 @@ package wtftweaks.blocks;
 
 import java.util.Random;
 
+import wtftweaks.WTFBlocks;
 import wtftweaks.WTFtweaks;
 import wtftweaks.configs.WTFTweaksConfig;
 import cpw.mods.fml.relauncher.Side;
@@ -36,7 +37,9 @@ public class BlockLitTorch extends BlockTorch// implements ITileEntityProvider
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random random){
     	if (WTFTweaksConfig.enableFiniteTorch > 0 && random.nextInt(WTFTweaksConfig.torchLifespan) == 0){
-    		world.setBlock(x, y, z, WTFtweaks.finitetorch_unlit);
+    		if (world.getClosestPlayer(x, y, z, 32) == null){
+    			world.setBlock(x, y, z, WTFBlocks.finitetorch_unlit);
+    		}
     	}
     }
 
